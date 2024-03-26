@@ -6,7 +6,6 @@ export default defineConfig({
   optimizeDeps: {
     include: ['./src/**/*'],
   },
-  base: 'https://abdelrahman-mh.github.io/comments-replay-template/',
   css: {
     preprocessorOptions: {
       sass: {

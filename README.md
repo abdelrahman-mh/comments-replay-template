@@ -17,3 +17,16 @@ Advanced comments and replays template, handles:
 - and more...
 
 build with modern web-builds tools includes, Typescript, @redux-toolkit, Sass, Vite, eslint and more.
+
+# How to test it
+
+First you need to clone the repo:
+
+    ````shell
+        git clone https://github.com/abdelrahman-mh/comments-replay-template
+
+        # OR with ssh
+
+        git clone git@github.com:abdelrahman-mh/comments-replay-template.git
+
+    ````
