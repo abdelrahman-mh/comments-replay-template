@@ -6,6 +6,7 @@ export default defineConfig({
   optimizeDeps: {
     include: ['./src/**/*'],
   },
+  base: process.env.NODE_ENV === 'development' ? '/' : '/comments-replay-template/',
   css: {
     preprocessorOptions: {
       sass: {
