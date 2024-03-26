@@ -8,6 +8,12 @@ Advanced comments and replays template, handles:
 - add/remove replay
 - replay mention to users
 - edit comment/replay
+- comment time tracking
+- get comments data with app services
+- handle loading and errors status
+- retry option, if error happened
+- simple validation checks
+- responsive design for mobile & desktop, using css grid system
 - and more...
 
-build with modern web-builds tools includes, Typescript, @redux-toolkit, Sass, Vite, eslint and more
+build with modern web-builds tools includes, Typescript, @redux-toolkit, Sass, Vite, eslint and more.

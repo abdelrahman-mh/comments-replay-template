@@ -2,7 +2,7 @@
   {
     "id": "d6aa0e04-d238-4e20-a439-23599ac7bf8b",
     "content": "Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You've nailed the design and the responsiveness at various breakpoints works really well.",
-    "createdAt": "2024-02-24T18:11:45.406Z",
+    "createdAt": "2024-02-26T18:38:37.426Z",
     "score": 12,
     "user": {
       "image": {
@@ -16,7 +16,7 @@
   {
     "id": "d7ced48f-be40-4532-95a0-244cc6187195",
     "content": "Woah, your project looks awesome! How long have you been coding for? I'm still new, but think I want to dive into React as well soon. Perhaps you can give me an insight on where I can learn React? Thanks!",
-    "createdAt": "2024-03-10T18:11:45.411Z",
+    "createdAt": "2024-03-12T18:38:37.429Z",
     "score": 5,
     "user": {
       "image": {
@@ -29,7 +29,7 @@
       {
         "id": "32a38854-4207-485d-a5dc-20d3bc1823a2",
         "content": "If you're still new, I'd recommend focusing on the fundamentals of HTML, CSS, and JS before considering React. It's very tempting to jump ahead but lay a solid foundation first.",
-        "createdAt": "2024-03-17T18:11:45.411Z",
+        "createdAt": "2024-03-19T18:38:37.432Z",
         "score": 4,
         "replyingTo": "maxblagun",
         "user": {
@@ -43,7 +43,7 @@
       {
         "id": "27ac5a88-7c5b-4fc3-aa7e-b5b110f29d2e",
         "content": "I couldn't agree more with this. Everything moves so fast and it always seems like everyone knows the newest library/framework. But the fundamentals are what stay constant.",
-        "createdAt": "2024-03-22T18:11:45.411Z",
+        "createdAt": "2024-03-24T18:38:37.434Z",
         "score": 2,
         "replyingTo": "ramsesmiron",
         "user": {

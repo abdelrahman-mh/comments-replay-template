@@ -1,9 +1,9 @@
-import React from 'react'
-import { Replay } from '../types'
-import Comment from './Comment'
+import React from 'react';
+import { Replay } from '../types';
+import Comment from './Comment';
 interface Props {
-  replies: Replay[]
-  commentId: string
+  replies: Replay[];
+  commentId: string;
 }
 const Replies: React.FC<Props> = ({ replies, commentId }) => {
   return (
@@ -12,7 +12,7 @@ const Replies: React.FC<Props> = ({ replies, commentId }) => {
         <Comment key={reply.id} comment={reply} type='reply' parentId={commentId} />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default Replies
+export default Replies;

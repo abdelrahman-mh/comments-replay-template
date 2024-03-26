@@ -1,7 +1,8 @@
-import React, { FormEvent, useRef, useEffect, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../hooks';
 import { addReplay } from '../feature/commentSlice';
 import { validateComment } from '../helper';
+import Textarea from './Textarea';
 
 interface Props {
   commentId: string;
@@ -13,17 +14,6 @@ const ReplayForm: React.FC<Props> = ({ replyingTo, commentId, close }) => {
   const [content, setContent] = useState(`@${replyingTo} `);
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.user);
-
-  const inputRef = useRef<HTMLTextAreaElement>(null);
-
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-      if (content) {
-        inputRef.current.setSelectionRange(content.length, content.length);
-      }
-    }
-  }, [content]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -46,13 +36,17 @@ const ReplayForm: React.FC<Props> = ({ replyingTo, commentId, close }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='replay-form'>
-      <img src={user?.image.png} alt='user-icon' className='user-icon' />
-      <textarea ref={inputRef} name='content' id='content' value={content} onChange={({ target }) => setContent(target.value)} placeholder='Add a reply...'></textarea>
-      <button type='submit'>REPLY</button>
-      <button type='button' onClick={close}>
-        Cancel
-      </button>
+    <form onSubmit={handleSubmit} className='replay-form form card-item'>
+      <img src={user?.image.png} alt='user-icon' className='form__image' />
+      <Textarea value={content} onChange={({ target }) => setContent(target.value)} placeholder='Add a reply...' />
+      <div className='form__buttons'>
+        <button className='btn confirm' type='submit'>
+          REPLY
+        </button>
+        <span className='cancel-btn' onClick={close}>
+          Cancel
+        </span>
+      </div>
     </form>
   );
 };

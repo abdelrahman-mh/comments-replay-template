@@ -1,7 +1,186 @@
-.container {
-  border: 1px solid black;
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+html {
+  max-width: 100%;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+input,
+button,
+textarea {
+  border: none;
+  outline: none;
+  &:hover {
+    outline: none;
+  }
+}
+body {
+  font-family: 'Rubik', sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  padding-inline: 16px;
+  min-height: 100vh;
+  background-color: $very-light-gray;
+}
+#root {
+  // as container
+  width: 100%;
+  max-width: 731px;
+  margin-inline: auto;
+  margin-top: 32px;
+  @include breakpoint-up(medium) {
+    margin-top: 64px;
+  }
 }
 
-.replies-container{
-    border: 1px solid red;
+.replies-container {
+  $left-space: 17px;
+
+  display: flex;
+  flex-direction: column;
+  gap: inherit;
+
+  position: relative;
+  width: 100%;
+  padding-left: $left-space;
+  @include breakpoint-up(medium) {
+    $left-space: 64px;
+    padding-left: $left-space;
+    gap: $card-space;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+
+    background-color: $Light-gray;
+    width: 1px;
+    height: 100%;
+    top: 0;
+    left: 0;
+    @include breakpoint-up(medium) {
+      left: calc($left-space / 2 - 1px);
+    }
+  }
+}
+
+.card-item {
+  background-color: $white;
+  border-radius: 10px;
+  padding: $card-space-small;
+
+  @include breakpoint-up(medium) {
+    padding: $card-space;
+  }
+}
+
+.actions-btn {
+  @extend .f-c;
+  gap: $card-space-mid;
+}
+.action-btn {
+  @extend .f-c;
+  gap: 9px;
+
+  font-size: 17px;
+  font-weight: 500;
+
+  user-select: none;
+  cursor: pointer;
+  color: $moderate-blue;
+  transition: all $button-transition;
+  &:hover {
+    // color: $light-grayish-blue;
+    filter: brightness(0) saturate(100%) invert(74%) sepia(2%) saturate(3480%) hue-rotate(200deg) brightness(110%) contrast(91%);
+  }
+
+  &.delete-btn {
+    color: $soft-Red;
+    &:hover {
+      // color: $pale-red;
+      filter: brightness(0) saturate(100%) invert(86%) sepia(5%) saturate(3837%) hue-rotate(301deg) brightness(100%) contrast(102%);
+    }
+  }
+}
+
+.btn {
+  cursor: pointer;
+  user-select: none;
+  padding: $card-space-small 30px;
+  color: $white;
+  border-radius: 10px;
+  transition: all $button-transition;
+
+  font-size: 16px;
+  font-weight: 500;
+  &.confirm {
+    background-color: $moderate-blue;
+    &:hover {
+      background-color: $light-grayish-blue;
+    }
+  }
+  &.cancel {
+    background-color: $grayish-Blue;
+    &:hover {
+      background-color: hsl(212, 9%, 57%)
+    }
+  }
+  &.delete {
+    background-color: $soft-Red;
+    &:hover {
+      background-color: $pale-red;
+    }
+  }
+}
+.cancel-btn {
+  color: $grayish-Blue;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// confirm delete popup
+.confirm-delete-content {
+  background-color: $white;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: $card-space;
+  width: 100%;
+  max-width: 400px;
+  .confirm-delete__title {
+    color: $dark-blue;
+    font-size: 28px;
+    font-weight: 500;
+  }
+  .confirm-delete__text {
+    margin-top: 10px;
+    line-height: 25px;
+    font-size: 16px;
+    color: $grayish-Blue;
+  }
+  .confirm-delete__actions {
+    width: 100%;
+    margin-top: $card-space-mid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    button {
+      padding-inline: 35px;
+    }
+  }
+}
+.confirm-delete-overlay {
+  background-color: hsla(211, 10%, 45%, 0.575);
+}
+
+// flex
+.f-c {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

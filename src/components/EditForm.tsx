@@ -1,7 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../hooks';
 import { editComment, editReplay } from '../feature/commentSlice';
 import { validateComment } from '../helper';
+import Textarea from './Textarea';
 
 interface Props {
   type: 'comment' | 'reply';
@@ -17,17 +18,6 @@ const EditForm: React.FC<Props> = ({ type, replayId, cancel, commentId, content:
   const { user } = useAppSelector((state) => state.user);
 
   const [content, setContent] = useState(type === 'reply' && replyingTo ? `@${replyingTo} ${contentToEdit}` : contentToEdit);
-
-  const inputRef = useRef<HTMLTextAreaElement>(null);
-
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-      if (content) {
-        inputRef.current.setSelectionRange(content.length, content.length);
-      }
-    }
-  }, [content]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -45,16 +35,17 @@ const EditForm: React.FC<Props> = ({ type, replayId, cancel, commentId, content:
   };
 
   return (
-    <form onSubmit={handleSubmit} className='edit-form'>
-      <textarea
-        ref={inputRef}
-        name='content'
-        id='content'
-        value={content}
-        onChange={({ target }) => setContent(target.value)}
-        placeholder={`Edit your ${type === 'comment' ? 'comment' : 'reply'} here...`}></textarea>
-      <button type='submit'>UPDATE</button>
-      <button onClick={cancel}>Cancel</button>
+    <form onSubmit={handleSubmit} className='edit-form form'>
+      <Textarea value={content} onChange={({ target }) => setContent(target.value)} placeholder={`Edit your ${type === 'comment' ? 'comment' : 'reply'} here...`} />
+
+      <div className='form__buttons'>
+        <button className='confirm btn' type='submit'>
+          UPDATE
+        </button>
+        <span className='cancel-btn' onClick={cancel}>
+          Cancel
+        </span>
+      </div>
     </form>
   );
 };
