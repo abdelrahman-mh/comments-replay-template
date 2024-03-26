@@ -16,17 +16,48 @@ Advanced comments and replays template, handles:
 - responsive design for mobile & desktop, using css grid system
 - and more...
 
-build with modern web-builds tools includes, Typescript, @redux-toolkit, Sass, Vite, eslint and more.
+Build with modern web-builds tools includes, `Typescript` `@redux-toolkit` `Sass`, `Vite` `eslint` and more. Live Demo [Here](https://abdelrahman-mh.github.io/comments-replay-template/)
 
 # How to test it
 
-First you need to clone the repo:
+- First, you need to clone the repo:
 
-    ````shell
-        git clone https://github.com/abdelrahman-mh/comments-replay-template
+  ```shell
+  git clone https://github.com/abdelrahman-mh/comments-replay-template
 
-        # OR with ssh
+  # Or using ssh
+  git clone git@github.com:abdelrahman-mh/comments-replay-template.git
+  ```
 
-        git clone git@github.com:abdelrahman-mh/comments-replay-template.git
+- and install dependencies with:
 
-    ````
+  ```shell
+  npm install
+  ```
+
+- after, you can start the dev server by running:
+
+  ```shell
+  npm run dev
+  ```
+
+  > this will open a dev server host at [http://localhost:5173/](http://localhost:5173/)
+
+- you can build a static app with:
+  ```shell
+  npm run build
+  ```
+  > this will build a app in `./dist/` dire, so you can open a html page on any browser
+
+---
+
+> ℹ️ **Info**
+>
+> if you work with windows OS, and fine a error like this:
+>
+> ```shell
+> 'NODE_ENV'  is not recognized as an internal or external command,
+> operable program or batch <file>
+> ```
+>
+> this will help you => [https://blog.jimmydc.com/cross-env-for-environment-variables/](https://blog.jimmydc.com/cross-env-for-environment-variables/)
