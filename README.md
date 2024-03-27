@@ -18,6 +18,10 @@ Advanced comments and replays template, handles:
 
 Build with modern web-builds tools includes, `Typescript` `@redux-toolkit` `Sass`, `Vite` `eslint` and more. Live Demo [Here](https://abdelrahman-mh.github.io/comments-replay-template/)
 
+![screenshot](./docs/screenshot1.jpg)
+![screenshot](./docs/screenshot2.jpg)
+
+
 # How to test it
 
 - First, you need to clone the repo:
