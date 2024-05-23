@@ -24,7 +24,7 @@ Advanced comments and replays template, Build with modern web-builds tools inclu
   ```shell
   git clone https://github.com/abdelrahman-mh/comments-replay-template
 
-  # :turtle: Navigate to app directory
+  # 🐢 Navigate to app directory
   cd comments-replay-template
   ```
 
