@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from '../util/hooks';
-import Comment from './Comment';
+import Post from './Post';
 import { fetchComments } from '../feature/commentSlice';
 import Replies from './Replies';
 
@@ -28,7 +28,7 @@ const CommentList = () => {
   } else if (status === 'succeeded' && comments.length > 0) {
     content = comments.map((comment) => (
       <React.Fragment key={comment.id}>
-        <Comment comment={comment} type='comment' />
+        <Post post={comment} isComment={true} />
         {comment.replies && comment.replies.length > 0 && <Replies replies={comment.replies} commentId={comment.id} />}
       </React.Fragment>
     ));

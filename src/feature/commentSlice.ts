@@ -40,16 +40,6 @@ const commentsSlice = createSlice({
       };
       state.comments.push(newComment);
     },
-    removeComment: (state, action: PayloadAction<string>) => {
-      state.comments = state.comments.filter((comment) => comment.id !== action.payload);
-    },
-    editComment: (state, action: PayloadAction<{ id: string; content: string }>) => {
-      const { id, content } = action.payload;
-      const commentToUpdate = state.comments.find((comment) => comment.id === id);
-      if (commentToUpdate) {
-        commentToUpdate.content = content;
-      }
-    },
     addReplay: (state, action: PayloadAction<{ commentId: string; replay: NewReplay }>) => {
       const { commentId, replay } = action.payload;
       const comment = state.comments.find((comment) => comment.id === commentId);
@@ -62,51 +52,64 @@ const commentsSlice = createSlice({
         });
       }
     },
-    removeReplay: (state, action: PayloadAction<{ commentId: string; replayId: string }>) => {
-      const { commentId, replayId } = action.payload;
-      const comment = state.comments.find((comment) => comment.id === commentId);
-      if (comment) {
-        comment.replies = comment.replies.filter((replay) => replay.id !== replayId);
-      }
-    },
-    editReplay: (state, action: PayloadAction<{ commentId: string; replayId: string; content: string }>) => {
-      const { commentId, replayId, content } = action.payload;
-      const comment = state.comments.find((comment) => comment.id === commentId);
-      if (comment) {
-        const replay = comment.replies.find((replay) => replay.id === replayId);
-        if (replay) {
-          replay.content = content;
-        }
-      }
-    },
-    increaseScore: (state, action: PayloadAction<{ parentId?: string; commentId: string }>) => {
-      const { parentId, commentId } = action.payload;
 
-      if (parentId) {
-        const comment = state.comments.find((comment) => comment.id === parentId);
-        const replay = comment?.replies.find((r) => r.id === commentId);
+    removePost: (state, action: PayloadAction<{ parentCommentId?: string; postId: string }>) => {
+      const { parentCommentId, postId } = action.payload;
+
+      if (parentCommentId) {
+        // Remove replay
+        const comment = state.comments.find((comment) => comment.id === parentCommentId);
+        if (comment && comment.replies) {
+          comment.replies = comment.replies.filter((replay) => replay.id !== postId);
+        }
+      } else {
+        // Remove comment
+        state.comments = state.comments.filter((c) => c.id !== postId);
+      }
+    },
+
+    editPost: (state, action: PayloadAction<{ parentCommentId?: string; postId: string; newContent: string }>) => {
+      const { parentCommentId, postId, newContent } = action.payload;
+
+      if (parentCommentId) {
+        const comment = state.comments.find((c) => c.id === parentCommentId);
+        const replay = comment?.replies.find((r) => r.id === postId);
+        if (replay) {
+          replay.content = newContent;
+        }
+      } else {
+        const comment = state.comments.find((c) => c.id === postId);
+        if (comment) comment.content = newContent;
+      }
+    },
+    increaseScore: (state, action: PayloadAction<{ parentCommentId?: string; postId: string }>) => {
+      const { parentCommentId, postId } = action.payload;
+
+      if (parentCommentId) {
+        const comment = state.comments.find((comment) => comment.id === parentCommentId);
+        const replay = comment?.replies.find((r) => r.id === postId);
         if (replay) {
           replay.score++;
         }
       } else {
-        const comment = state.comments.find((comment) => comment.id === commentId);
+        const comment = state.comments.find((comment) => comment.id === postId);
 
         if (comment) {
           comment.score++;
         }
       }
     },
-    decreaseScore: (state, action: PayloadAction<{ parentId?: string; commentId: string }>) => {
-      const { parentId, commentId } = action.payload;
+    decreaseScore: (state, action: PayloadAction<{ parentCommentId?: string; postId: string }>) => {
+      const { parentCommentId, postId } = action.payload;
 
-      if (parentId) {
-        const comment = state.comments.find((comment) => comment.id === parentId);
-        const replay = comment?.replies.find((r) => r.id === commentId);
+      if (parentCommentId) {
+        const comment = state.comments.find((comment) => comment.id === parentCommentId);
+        const replay = comment?.replies.find((r) => r.id === postId);
         if (replay) {
           replay.score--;
         }
       } else {
-        const comment = state.comments.find((comment) => comment.id === commentId);
+        const comment = state.comments.find((comment) => comment.id === postId);
 
         if (comment) {
           comment.score--;
@@ -129,6 +132,6 @@ const commentsSlice = createSlice({
   },
 });
 
-export const { addComment, removeComment, editComment, addReplay, removeReplay, editReplay, increaseScore, decreaseScore } = commentsSlice.actions;
+export const { addComment, removePost, editPost, addReplay, increaseScore, decreaseScore } = commentsSlice.actions;
 
 export default commentsSlice.reducer;
