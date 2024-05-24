@@ -25,7 +25,7 @@ const Textarea: React.FC<Props> = ({ value, onChange, placeholder }) => {
     }
   }, []);
 
-  return <textarea className='form__textarea' spellCheck='false' name='content' id='content' value={value} onChange={onChange} placeholder={placeholder} ref={textAreaRef}></textarea>;
+  return <textarea className="form__textarea" spellCheck="false" name="content" id="content" value={value} onChange={onChange} placeholder={placeholder} ref={textAreaRef}></textarea>;
 };
 
 export default Textarea;

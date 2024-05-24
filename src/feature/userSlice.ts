@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { User } from '../types';
+import { User } from '../util/types';
 import { getCurrentUser } from '../services/userServices';
 type Status = 'idle' | 'succeeded' | 'loading' | 'failed';
 
