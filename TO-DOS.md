@@ -1,2 +1,5 @@
 - [ ] make if replay form is open and user open another one the last one closed, also for editing form
 - [ ] improve design
+- [ ] Add input validation error
+- [ ] Add **fnm**
+- [ ] Replace redux with TanStack Query,
