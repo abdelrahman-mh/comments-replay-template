@@ -4,8 +4,8 @@ import { Post as PostType } from '../../util/types';
 import { formatDate } from '../../util/helper';
 
 import Score from './Score';
-import EditForm from '../EditForm';
-import ReplayForm from '../ReplayForm';
+import EditForm from './EditPostForm';
+import ReplayForm from './ReplayForm';
 import Actions from './Actions';
 
 interface Props {
@@ -35,13 +35,16 @@ const Post: React.FC<Props> = ({ post, isComment, parentCommentId }) => {
     <>
       <div className="comment card-item">
         <Score score={post.score} postId={post.id} parentCommentId={parentCommentId} />
+
         <div className="comment__desc">
           <span className="comment__desc_user">
             <img alt="user-image" src={post.user.image.png} /> {post.user.username} {isOwnComment && renderYou()}
           </span>
           <span className="comment__desc_date">{formatDate(post.createdAt)}</span>
         </div>
+
         <Actions isOwnComment={isOwnComment} parentCommentId={parentCommentId} postId={post.id} edit={handleEdit} replying={handleReplaying} />
+
         {isOwnComment && isEditing ? (
           <EditForm isComment={isComment} replyingTo={post.replyingTo} parentCommentId={parentCommentId} postId={post.id} content={post.content} cancel={handleCancelEdit} />
         ) : (
@@ -51,7 +54,8 @@ const Post: React.FC<Props> = ({ post, isComment, parentCommentId }) => {
           </p>
         )}
       </div>
-      {isReplaying && <ReplayForm commentId={parentCommentId as string} replyingTo={post.user.username} close={handleCancelReplaying} />}
+
+      {isReplaying && <ReplayForm commentId={parentCommentId || post.id} replyingTo={post.user.username} close={handleCancelReplaying} />}
     </>
   );
 };

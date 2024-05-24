@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useAppSelector, useAppDispatch } from '../util/hooks';
-import { editPost } from '../feature/commentSlice';
-import { validateComment } from '../util/helper';
-import Textarea from './Textarea';
+import { useAppSelector, useAppDispatch } from '../../util/hooks';
+import { editPost } from '../../feature/commentSlice';
+import { validateComment } from '../../util/helper';
+import Textarea from '../Textarea';
 
 interface Props {
   isComment: boolean;

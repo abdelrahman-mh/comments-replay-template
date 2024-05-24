@@ -1,8 +1,8 @@
 import React, { FormEvent, useState } from 'react';
-import { useAppSelector, useAppDispatch } from '../util/hooks';
-import { addReplay } from '../feature/commentSlice';
-import { validateComment } from '../util/helper';
-import Textarea from './Textarea';
+import { useAppSelector, useAppDispatch } from '../../util/hooks';
+import { addReplay } from '../../feature/commentSlice';
+import { validateComment } from '../../util/helper';
+import Textarea from '../Textarea';
 
 interface Props {
   commentId: string;
@@ -11,6 +11,7 @@ interface Props {
 }
 
 const ReplayForm: React.FC<Props> = ({ replyingTo, commentId, close }) => {
+  console.log('comment_id', commentId);
   const [content, setContent] = useState(`@${replyingTo} `);
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.user);
@@ -36,14 +37,14 @@ const ReplayForm: React.FC<Props> = ({ replyingTo, commentId, close }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='replay-form form card-item'>
-      <img src={user?.image.png} alt='user-icon' className='form__image' />
-      <Textarea value={content} onChange={({ target }) => setContent(target.value)} placeholder='Add a reply...' />
-      <div className='form__buttons'>
-        <button className='btn confirm' type='submit'>
+    <form onSubmit={handleSubmit} className="replay-form form card-item">
+      <img src={user?.image.png} alt="user-icon" className="form__image" />
+      <Textarea value={content} onChange={({ target }) => setContent(target.value)} placeholder="Add a reply..." />
+      <div className="form__buttons">
+        <button className="btn confirm" type="submit">
           REPLY
         </button>
-        <span className='cancel-btn' onClick={close}>
+        <span className="cancel-btn" onClick={close}>
           Cancel
         </span>
       </div>
