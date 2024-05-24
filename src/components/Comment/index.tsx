@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useAppSelector } from '../../hooks';
-import { Comment as CommentType } from '../../types';
-import { formatDate } from '../../helper';
+import { useAppSelector } from '../../util/hooks';
+import { Comment as CommentType } from '../../util/types';
+import { formatDate } from '../../util/helper';
 
 import Score from './Score';
 import EditForm from '../EditForm';

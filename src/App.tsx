@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from './hooks';
+import { useAppDispatch, useAppSelector } from './util/hooks';
 import { fetchComments } from './feature/commentSlice';
 import { fetchCurrentUser } from './feature/userSlice';
 import CommentList from './components/CommentList';

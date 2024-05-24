@@ -1,6 +1,6 @@
 import React from 'react';
 import { increaseScore, decreaseScore } from '../../feature/commentSlice';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch } from '../../util/hooks';
 
 interface Props {
   score: number;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useAppSelector, useAppDispatch } from '../hooks';
+import { useAppSelector, useAppDispatch } from '../util/hooks';
 import { addComment } from '../feature/commentSlice';
-import { validateComment } from '../helper';
+import { validateComment } from '../util/helper';
 import Textarea from './Textarea';
 
 interface Props {}

@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { useAppDispatch, useAppSelector } from '../hooks';
+import { useAppDispatch, useAppSelector } from '../util/hooks';
 import Comment from './Comment';
 import { fetchComments } from '../feature/commentSlice';
 import Replies from './Replies';

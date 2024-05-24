@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { Comment } from '../types';
-import { apiUrl } from '../constants';
+import { Comment } from '../util/types';
+import { apiUrl } from '../util/constants';
 
 export const getComments = async () => {
   const response = await axios.get<Comment[]>(`${apiUrl}data/comments.json`);

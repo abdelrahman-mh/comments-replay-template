@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
-import { Comment, NewComment, NewReplay } from '../types';
+import { Comment, NewComment, NewReplay } from '../util/types';
 import { getComments } from '../services/commentsServices';
 
 type Status = 'idle' | 'succeeded' | 'loading' | 'failed';

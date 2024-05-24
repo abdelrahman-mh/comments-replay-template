@@ -1,5 +1,5 @@
 import React from 'react';
-import { Replay } from '../types';
+import { Replay } from '../util/types';
 import Comment from './Comment';
 interface Props {
   replies: Replay[];

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ConfirmDelete from './DeleteComment';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch } from '../../util/hooks';
 import { removeComment, removeReplay } from '../../feature/commentSlice';
 
 interface Props {
