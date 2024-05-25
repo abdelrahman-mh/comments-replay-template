@@ -17,17 +17,14 @@ interface Props {
 // Post can be a comment or replay
 // If not parentCommentId so the post is comment, if reverse the post is replay
 const Post: React.FC<Props> = ({ post, isComment, parentCommentId }) => {
-  const [isReplaying, setIsReplaying] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
   const user = useAppSelector((state) => state.user.user?.username);
+  const replayingPostId = useAppSelector((state) => state.comments.openedReplayForm);
   const isOwnComment = user === post.user.username;
 
   const handleEdit = () => setIsEditing(true);
   const handleCancelEdit = () => setIsEditing(false);
-
-  const handleReplaying = () => setIsReplaying(true);
-  const handleCancelReplaying = () => setIsReplaying(false);
 
   const renderYou = () => <span className="you">you</span>;
 
@@ -43,7 +40,7 @@ const Post: React.FC<Props> = ({ post, isComment, parentCommentId }) => {
           <span className="comment__desc_date">{formatDate(post.createdAt)}</span>
         </div>
 
-        <Actions isOwnComment={isOwnComment} parentCommentId={parentCommentId} postId={post.id} edit={handleEdit} replying={handleReplaying} />
+        <Actions isOwnComment={isOwnComment} parentCommentId={parentCommentId} postId={post.id} edit={handleEdit} />
 
         {isOwnComment && isEditing ? (
           <EditForm isComment={isComment} replyingTo={post.replyingTo} parentCommentId={parentCommentId} postId={post.id} content={post.content} cancel={handleCancelEdit} />
@@ -55,7 +52,7 @@ const Post: React.FC<Props> = ({ post, isComment, parentCommentId }) => {
         )}
       </div>
 
-      {isReplaying && <ReplayForm commentId={parentCommentId || post.id} replyingTo={post.user.username} close={handleCancelReplaying} />}
+      {replayingPostId === post.id && <ReplayForm commentId={parentCommentId || post.id} replyingTo={post.user.username} />}
     </>
   );
 };
