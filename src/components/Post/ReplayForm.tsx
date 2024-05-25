@@ -1,20 +1,20 @@
 import React, { FormEvent, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../util/hooks';
-import { addReplay } from '../../feature/commentSlice';
+import { addReplay, closeReplayingForm } from '../../feature/commentSlice';
 import { validateComment } from '../../util/helper';
 import Textarea from '../Textarea';
 
 interface Props {
   commentId: string;
   replyingTo: string;
-  close: () => void;
 }
 
-const ReplayForm: React.FC<Props> = ({ replyingTo, commentId, close }) => {
-  console.log('comment_id', commentId);
+const ReplayForm: React.FC<Props> = ({ replyingTo, commentId }) => {
   const [content, setContent] = useState(`@${replyingTo} `);
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.user);
+
+  const closeFrom = () => dispatch(closeReplayingForm());
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -32,7 +32,7 @@ const ReplayForm: React.FC<Props> = ({ replyingTo, commentId, close }) => {
         })
       );
       setContent('');
-      close();
+      closeFrom();
     }
   };
 
@@ -44,7 +44,7 @@ const ReplayForm: React.FC<Props> = ({ replyingTo, commentId, close }) => {
         <button className="btn confirm" type="submit">
           REPLY
         </button>
-        <span className="cancel-btn" onClick={close}>
+        <span className="cancel-btn" onClick={() => closeFrom()}>
           Cancel
         </span>
       </div>

@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import ConfirmDelete from './DeletePost';
 import { useAppDispatch } from '../../util/hooks';
-import { removePost } from '../../feature/commentSlice';
+import { removePost, setOpenedReplayForm } from '../../feature/commentSlice';
 
 interface Props {
   parentCommentId?: string;
   postId: string;
   isOwnComment: boolean;
   edit: () => void;
-  replying: () => void;
 }
 
-const Actions: React.FC<Props> = ({ isOwnComment, replying, edit, parentCommentId, postId }) => {
+const Actions: React.FC<Props> = ({ isOwnComment, edit, parentCommentId, postId }) => {
   const [open, setOpen] = useState(false);
   const dispatch = useAppDispatch();
 
@@ -19,6 +18,8 @@ const Actions: React.FC<Props> = ({ isOwnComment, replying, edit, parentCommentI
     setOpen(false);
     dispatch(removePost({ parentCommentId, postId }));
   };
+
+  const replying = () => dispatch(setOpenedReplayForm({ id: postId }));
 
   return (
     <div className="comment__actions-btn actions-btn">

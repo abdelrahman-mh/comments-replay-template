@@ -9,12 +9,14 @@ interface NotesState {
   comments: Comment[];
   status: Status;
   error: null | string;
+  openedReplayForm: string | null;
 }
 
 const initialState: NotesState = {
   comments: [],
   status: 'idle',
   error: null,
+  openedReplayForm: null,
 };
 
 export const fetchComments = createAsyncThunk('comments/fetchComments', async (_, { rejectWithValue }) => {
@@ -116,6 +118,13 @@ const commentsSlice = createSlice({
         }
       }
     },
+    setOpenedReplayForm: (state, action: PayloadAction<{ id: string }>) => {
+      const { id } = action.payload;
+      state.openedReplayForm = id;
+    },
+    closeReplayingForm: (state) => {
+      state.openedReplayForm = null;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchComments.pending, (state) => {
@@ -132,6 +141,6 @@ const commentsSlice = createSlice({
   },
 });
 
-export const { addComment, removePost, editPost, addReplay, increaseScore, decreaseScore } = commentsSlice.actions;
+export const { addComment, removePost, editPost, addReplay, increaseScore, decreaseScore, setOpenedReplayForm, closeReplayingForm } = commentsSlice.actions;
 
 export default commentsSlice.reducer;
